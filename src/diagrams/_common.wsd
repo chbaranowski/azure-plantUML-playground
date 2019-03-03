@@ -15,3 +15,8 @@ skinparam actor {
   FontColor #666666
   FontSize 13
 }
+
+skinparam rectangle {
+  BorderColor AZURE_BORDER_COLOR
+	BackgroundColor AZURE_BG_COLOR
+}

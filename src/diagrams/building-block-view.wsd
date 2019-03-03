@@ -1,17 +1,21 @@
 @startuml
 
-!include _common.wsd
 !include _azure-plantuml.wsd
+!include _common.wsd
 
 node "**External Building System**" as externalBuildingSystemAlias
 
-AzureEventHub(rawEventsHubAlias, "Raw Event Hub", "Events")
-AzureFunction(stateFunctionAlias, "State Processor", "Compute")
-AzureCosmosDb(stateDBAlias, "State Database", "Database")
-AzureDataLakeStorage(datalakeAlias, "Data Lake", "Storage")
-AzureStreamAnalytics(streamAnalyticsAlias, "Aggregate Events", "Analytics")
-AzureEventHub(aggregatedEventsHubAlias, "Aggregated Hub", "Events")
-AzureTimeSeriesInsights(timeSeriesAlias, "Time Series", "Database")
+rectangle "Azure" {  
+  AzureEventHub(rawEventsHubAlias, "Raw Event Hub", "Events")
+  AzureFunction(stateFunctionAlias, "State Processor", "Compute")
+  AzureCosmosDb(stateDBAlias, "State Database", "Database")
+  AzureDataLakeStorage(datalakeAlias, "Data Lake", "Storage")
+  AzureStreamAnalytics(streamAnalyticsAlias, "Aggregate Events", "Analytics")
+  AzureEventHub(aggregatedEventsHubAlias, "Aggregated Hub", "Events")
+  AzureTimeSeriesInsights(timeSeriesAlias, "Time Series", "Database")
+  AzureApplicationInsights(insights, "Monitoring", "DevOps")
+  AzureActiveDirectoryB2C(adAlias, "Active Directory", "IdP")
+}
 
 externalBuildingSystemAlias --> rawEventsHubAlias
 rawEventsHubAlias --> datalakeAlias : **Capture** 
@@ -21,9 +25,10 @@ streamAnalyticsAlias --> aggregatedEventsHubAlias
 aggregatedEventsHubAlias --> timeSeriesAlias
 stateFunctionAlias --> stateDBAlias
 
-actor "**API Users**" as apiUsersAlias
-timeSeriesAlias <-. apiUsersAlias
-datalakeAlias <-. apiUsersAlias
-stateDBAlias <-. apiUsersAlias
+actor "**API Users (Dashboard)**" as apiUsersAlias
+timeSeriesAlias <.. apiUsersAlias
+datalakeAlias <.. apiUsersAlias
+stateDBAlias <.. apiUsersAlias
+adAlias <.. apiUsersAlias
 
 @enduml

@@ -6,3 +6,5 @@
 !includeurl AzurePuml/Storage/AzureDataLakeStorage.puml
 !includeurl AzurePuml/Analytics/AzureStreamAnalytics.puml
 !includeurl AzurePuml/InternetOfThings/AzureTimeSeriesInsights.puml
+!includeurl AzurePuml/Identity/AzureActiveDirectoryB2C.puml
+!includeurl AzurePuml/DevOps/AzureApplicationInsights.puml
