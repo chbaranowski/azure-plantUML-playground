@@ -1,0 +1,17 @@
+left to right direction
+
+skinparam wrapWidth 150
+
+skinparam node {
+	BorderColor #666666
+	BackgroundColor AZURE_BG_COLOR
+  FontColor #666666
+  FontSize 13
+}
+
+skinparam actor {
+	BorderColor #666666
+	BackgroundColor AZURE_BG_COLOR
+  FontColor #666666
+  FontSize 13
+}
